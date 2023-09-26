@@ -2,6 +2,36 @@ console.log("Завдання: 4 ==============================");
 
 // Функція task4, яка буде використовувати проміси
 function task4() {
+  function promise1() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("Проміс 1 виконано");
+      }, 1000);
+    });
+  }
+
+  function promise2() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("Проміс 2 виконано");
+      }, 1000);
+    });
+  }
+
+  Promise.all([promise1(), promise2()])
+    .then((results) => {
+      const arr = [];
+      results.forEach((result) => {
+        arr.push(result);
+      });
+      console.log(arr);
+    })
+    .catch((error) => {
+      console.error("Помилка в одному з промісів:", error);
+    })
+    .finally(() => {
+      console.log("Всі операції завершено");
+    });
   // Визначаємо перший проміс з іменем promise1
   // Функція promise1, повертає новий проміс
   // Ми викликаємо конструктор Promise, що приймає в якості аргументу функцію (executor function)
